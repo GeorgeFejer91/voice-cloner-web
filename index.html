@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="app-mode" content="companion">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; frame-src https://vdo.ninja; media-src 'self' blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Voice Cloner</title>
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./client.js"></script>
+</head>
+<body>
+<main>
+  <h1 class="app-title"><img src="./icon.svg" width="28" height="28" alt=""><span data-measure>Voice Cloner</span>
+    <button id="open-folder" hidden class="folder-button" type="button" aria-label="Open audio folder" title="Open saved MP3 folder">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3 8V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v3M3 8h5l2 3h11l-3 9H3L1 8z"/></svg>
+    </button>
+  </h1>
+  <form id="access-form">
+    <div id="pairing-input">
+      <label for="pc-link" data-measure>PC pairing link</label>
+      <textarea id="pc-link" rows="3" maxlength="1600" placeholder="Paste the link from Remote access on your PC"></textarea>
+    </div>
+    <label for="access-password" data-measure>Access password</label>
+    <input id="access-password" type="password" maxlength="80" autocomplete="current-password">
+    <label class="check-row"><input id="remember-browser" type="checkbox" checked><span data-measure>Remember this browser for 24 hours</span></label>
+    <button type="submit" class="primary"><span data-measure>Unlock app</span></button>
+    <button id="change-pc" type="button" hidden><span data-measure>Connect to another PC</span></button>
+    <p class="hint" data-measure>Keep the app open on your PC. Speech is generated there.</p>
+  </form>
+  <div id="workspace" hidden>
+  <form id="clone-form">
+    <label for="profile" data-measure>Reference voice</label>
+    <div class="profile-row">
+      <select id="profile" name="voice_id" aria-label="Saved voice profile">
+        <option value="">New reference</option>
+      </select>
+      <button id="delete-profile" type="button" hidden><span data-measure>Delete preset</span></button>
+    </div>
+    <p id="selected-profile" class="hint" data-measure hidden></p>
+    <div id="new-reference">
+      <label class="file-control" for="audio"><span data-measure>Choose audio file</span>
+        <input id="audio" type="file" accept="audio/*,video/mp4,video/webm,.mkv,.wma,.aiff,.flac">
+      </label>
+      <p id="file-name" data-measure hidden></p>
+      <label class="sr-only" for="youtube">YouTube URL</label>
+      <input id="youtube" name="youtube" type="url" placeholder="Or paste a YouTube URL" autocomplete="off">
+      <p class="hint" data-measure>Use 10–30 seconds of clear speech from one speaker.</p>
+    </div>
+    <div class="language-row">
+      <label for="text" data-measure>Text to speak</label>
+      <select id="language" aria-label="Output language"><option>English</option><option>German</option></select>
+    </div>
+    <textarea id="text" name="text" rows="5" maxlength="2000" required placeholder="Write your text here…"></textarea>
+    <button id="generate" type="submit" class="primary"><span data-measure>Generate MP3</span></button>
+    <p class="hint" data-measure>MP3s are saved automatically on your PC.</p>
+  </form>
+  <p id="status" role="status" aria-live="polite" data-measure>Ready. Generation runs on this PC.</p>
+  <section id="result" aria-label="Generated speech" hidden>
+    <audio id="player" controls preload="metadata"></audio>
+    <p id="saved-file" class="hint" data-measure></p>
+    <div class="result-actions">
+      <a id="download" class="button" download><span data-measure>Download MP3</span></a>
+      <button id="show-save" type="button"><span data-measure>Save voice</span></button>
+    </div>
+    <form id="save-form" hidden>
+      <label class="sr-only" for="voice-name">Voice preset name</label>
+      <input id="voice-name" maxlength="80" placeholder="Voice preset name" required>
+      <button type="submit"><span data-measure>Save preset</span></button>
+    </form>
+  </section>
+  </div>
+  <p id="access-status" role="status" aria-live="polite" data-measure hidden></p>
+  <button id="forget-browser" type="button" hidden><span data-measure>Forget this browser and lock</span></button>
+  <details id="remote-settings" hidden>
+    <summary data-measure>Remote access</summary>
+    <form id="remote-enable-form">
+      <label for="page-url" data-measure>Companion page address</label>
+      <input id="page-url" type="url" value="https://georgefejer91.github.io/voice-cloner-web/" required>
+      <button id="remote-enable" type="submit"><span data-measure>Enable remote access</span></button>
+    </form>
+    <p id="remote-status" class="hint" role="status" data-measure>Remote access is off.</p>
+    <div id="remote-active" hidden>
+      <label for="pairing-link" data-measure>Open this pairing link on your phone</label>
+      <textarea id="pairing-link" rows="3" readonly></textarea>
+      <button id="copy-link" type="button"><span data-measure>Copy pairing link</span></button>
+      <div id="password-display" hidden>
+        <label for="generated-password" data-measure>Access password (save it now)</label>
+        <input id="generated-password" type="text" readonly autocomplete="off">
+        <button id="copy-password" type="button"><span data-measure>Copy access password</span></button>
+      </div>
+      <p class="hint" data-measure>Keep this PC awake and this window open. Stopping access locks connected browsers.</p>
+      <div id="remote-devices"></div>
+      <button id="remote-reset" type="button"><span data-measure>Reset password and forget all browsers</span></button>
+      <button id="remote-stop" type="button"><span data-measure>Stop remote access</span></button>
+    </div>
+  </details>
+</main>
+</body>
+</html>
