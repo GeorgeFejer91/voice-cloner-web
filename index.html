@@ -19,15 +19,10 @@
     </button>
   </h1>
   <form id="access-form">
-    <div id="pairing-input">
-      <label for="pc-link" data-measure>PC pairing link</label>
-      <textarea id="pc-link" rows="3" maxlength="1600" placeholder="Paste the link from Remote access on your PC"></textarea>
-    </div>
     <label for="access-password" data-measure>Access password</label>
     <input id="access-password" type="password" maxlength="80" autocomplete="current-password">
     <label class="check-row"><input id="remember-browser" type="checkbox" checked><span data-measure>Remember this browser for 24 hours</span></label>
     <button type="submit" class="primary"><span data-measure>Unlock app</span></button>
-    <button id="change-pc" type="button" hidden><span data-measure>Connect to another PC</span></button>
     <p class="hint" data-measure>Keep the app open on your PC. Speech is generated there.</p>
   </form>
   <div id="workspace" hidden>
@@ -86,9 +81,9 @@
     </form>
     <p id="remote-status" class="hint" role="status" data-measure>Remote access is off.</p>
     <div id="remote-active" hidden>
-      <label for="pairing-link" data-measure>Open this pairing link on your phone</label>
-      <textarea id="pairing-link" rows="3" readonly></textarea>
-      <button id="copy-link" type="button"><span data-measure>Copy pairing link</span></button>
+      <label for="companion-url" data-measure>Open this companion URL on your phone</label>
+      <input id="companion-url" type="url" readonly>
+      <button id="copy-url" type="button"><span data-measure>Copy companion URL</span></button>
       <div id="password-display" hidden>
         <label for="generated-password" data-measure>Access password (save it now)</label>
         <input id="generated-password" type="text" readonly autocomplete="off">
