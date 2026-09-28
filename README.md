@@ -2,9 +2,10 @@
 
 Open https://georgefejer91.github.io/voice-cloner-web/ from your phone or browser.
 
-Enable Remote access in the Voice Cloner app on your PC. Open the pairing link
-and enter the generated password. Remembered browser access lasts 24 hours and
-can be revoked on the PC. Keep the PC awake and its app window open.
+Open Remote access in the Voice Cloner app on your PC. Set a unique access
+password of at least 24 characters, enable remote access, then enter that same
+password here. Remembered browser access lasts 24 hours and can be revoked on
+the PC. Keep the PC awake and its app window open.
 
 This repository contains only static UI assets. The PC runs the model, checks
 access and stores recordings. GitHub Pages does not run the speech model or

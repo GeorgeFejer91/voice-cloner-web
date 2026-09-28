@@ -51,7 +51,7 @@
       <label for="text" data-measure>Text to speak</label>
       <select id="language" aria-label="Output language"><option>English</option><option>German</option></select>
     </div>
-    <textarea id="text" name="text" rows="5" maxlength="2000" required placeholder="Write your text here…"></textarea>
+    <textarea id="text" name="text" rows="4" maxlength="2000" required placeholder="Write your text here…"></textarea>
     <button id="generate" type="submit" class="primary"><span data-measure>Generate MP3</span></button>
     <p class="hint" data-measure>MP3s are saved automatically on your PC.</p>
   </form>
@@ -69,14 +69,14 @@
       <button type="submit"><span data-measure>Save preset</span></button>
     </form>
   </section>
-  </div>
-  <p id="access-status" role="status" aria-live="polite" data-measure hidden></p>
-  <button id="forget-browser" type="button" hidden><span data-measure>Forget this browser and lock</span></button>
   <details id="remote-settings" hidden>
     <summary data-measure>Remote access</summary>
     <form id="remote-enable-form">
       <label for="page-url" data-measure>Companion page address</label>
       <input id="page-url" type="url" value="https://georgefejer91.github.io/voice-cloner-web/" required>
+      <label for="remote-password" data-measure>Access password for the online app</label>
+      <input id="remote-password" type="password" minlength="24" maxlength="80" autocomplete="new-password" required>
+      <p class="hint" data-measure>Use a unique password of at least 24 characters. Enter the same password on GitHub Pages.</p>
       <button id="remote-enable" type="submit"><span data-measure>Enable remote access</span></button>
     </form>
     <p id="remote-status" class="hint" role="status" data-measure>Remote access is off.</p>
@@ -84,17 +84,14 @@
       <label for="companion-url" data-measure>Open this companion URL on your phone</label>
       <input id="companion-url" type="url" readonly>
       <button id="copy-url" type="button"><span data-measure>Copy companion URL</span></button>
-      <div id="password-display" hidden>
-        <label for="generated-password" data-measure>Access password (save it now)</label>
-        <input id="generated-password" type="text" readonly autocomplete="off">
-        <button id="copy-password" type="button"><span data-measure>Copy access password</span></button>
-      </div>
       <p class="hint" data-measure>Keep this PC awake and this window open. Stopping access locks connected browsers.</p>
       <div id="remote-devices"></div>
-      <button id="remote-reset" type="button"><span data-measure>Reset password and forget all browsers</span></button>
       <button id="remote-stop" type="button"><span data-measure>Stop remote access</span></button>
     </div>
   </details>
+  </div>
+  <p id="access-status" role="status" aria-live="polite" data-measure hidden></p>
+  <button id="forget-browser" type="button" hidden><span data-measure>Forget this browser and lock</span></button>
 </main>
 </body>
 </html>
