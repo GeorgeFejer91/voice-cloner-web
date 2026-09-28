@@ -32,6 +32,9 @@
   </form>
   <div id="workspace" hidden>
   <form id="clone-form">
+    <label for="engine" data-measure>Voice engine</label>
+    <select id="engine" name="engine"><option value="qwen">Qwen3-TTS</option><option value="omnivoice">OmniVoice</option></select>
+    <p id="engine-note" class="hint" data-measure hidden>OmniVoice is free for personal, noncommercial use. Use a 3–10 second reference for best results.</p>
     <label for="profile" data-measure>Reference voice</label>
     <div class="profile-row">
       <select id="profile" name="voice_id" aria-label="Saved voice profile">
@@ -47,7 +50,7 @@
       <p id="file-name" data-measure hidden></p>
       <label class="sr-only" for="youtube">YouTube URL</label>
       <input id="youtube" name="youtube" type="url" placeholder="Or paste a YouTube URL" autocomplete="off">
-      <p class="hint" data-measure>Use 10–30 seconds of clear speech from one speaker.</p>
+      <p class="hint" data-measure>Use clear speech from one speaker: 3–10 seconds for OmniVoice, 10–30 seconds for Qwen.</p>
     </div>
     <div class="language-row">
       <label for="text" data-measure>Text to speak</label>
